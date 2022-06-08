@@ -6,11 +6,14 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:28 by smayrand          #+#    #+#             */
-/*   Updated: 2022/06/07 21:34:41 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/06/08 04:20:32 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SOLIB_H
 # define SOLIB_H
+
+# include "./mlx/mlx.h"
+# include "./printf/libftprintf.h"
 
 #endif

@@ -6,9 +6,12 @@
 #    By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 14:38:45 by smayrand          #+#    #+#              #
-#    Updated: 2022/06/07 22:11:27 by smayrand         ###   ########.fr        #
+#    Updated: 2022/06/08 05:07:47 by smayrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+GREEN = '\033[32m'
+NONE = '\033[0m'
 
 NAME = so_long
 
@@ -21,33 +24,43 @@ RM = rm -f
 SRCS = so_long.c\
 
 LIBX_A = ./mlx/libmlx.a
+PRINTF_A = ./printf/libftprintf.a
 OBJS = $(SRCS:.c=.o)
 
 
 	
+aprintf:
+	@(cd ./printf && make all)
+	@echo $(GREEN) "PRINTF COMPILED" $(NONE)
+	@(cd ..)
 
 mlx:
 	@(cd mlx && make all)
-	@echo "MINILIBX COMPILED"
+	@echo $(GREEN) "MINILIBX COMPILED" $(NONE)
 	@(cd ..)
 	
-mlxclean:
-	@(cd mlx && make clean)
-	@echo "MINILIBX CLEANED"
+printfclean:
+	@(cd ./printf && make fclean)
+	@echo $(GREEN) "PRINTF CLEANED" $(NONE)
 	@(cd ..)
 
-all: mlx $(NAME)
-	@echo "FULLY COMPILED"
+mlxclean:
+	@(cd mlx && make clean)
+	@echo $(GREEN) "MINILIBX CLEANED" $(NONE)
+	@(cd ..)
+
+all: mlx aprintf $(NAME)
+	@echo $(GREEN) "FULLY COMPILED" $(NONE)
 
 $(NAME):	$(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBX_A)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBX_A) $(PRINTF_A)
 	
 clean:
 	$(RM) $(OBJS)
 
-fclean: clean mlxclean
+fclean: clean mlxclean printfclean
 	$(RM) $(NAME)
-	@echo "FULLY CLEANED"
+	@echo $(GREEN) "FULLY CLEANED" $(NONE)
 
 re: fclean all
 

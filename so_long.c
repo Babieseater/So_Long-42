@@ -6,19 +6,16 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:44 by smayrand          #+#    #+#             */
-/*   Updated: 2022/06/07 22:01:12 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/06/08 04:55:56 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "solib.h"
 
-void	ft_putchar(char c)
-{
-    write(1, &c, 1);           
-}
-
 int	main(void)
 {
-	ft_putchar('C');
+//	void 	*mlx = mlx_init();
+//	void	*win = mlx_new_window(mlx, 640, 360, "Forest of the deads");
+//	mlx_loop(mlx);
 }
