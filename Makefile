@@ -6,7 +6,7 @@
 #    By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 14:38:45 by smayrand          #+#    #+#              #
-#    Updated: 2022/06/08 05:07:47 by smayrand         ###   ########.fr        #
+#    Updated: 2022/06/08 05:35:02 by smayrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ NAME = so_long
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
+MLXFLAGS =  -lmlx -framework OpenGL -framework AppKit
 AR = ar -rcs
 
 RM = rm -f
@@ -53,7 +54,7 @@ all: mlx aprintf $(NAME)
 	@echo $(GREEN) "FULLY COMPILED" $(NONE)
 
 $(NAME):	$(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBX_A) $(PRINTF_A)
+	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) $(LIBX_A) $(PRINTF_A) -o $(NAME)
 	
 clean:
 	$(RM) $(OBJS)
@@ -171,4 +172,4 @@ sexy:
 
 
 
-.PHONY: mlx mlxclean all clean fclean re sexy
+.PHONY: aprintf printfclean mlx mlxclean all clean fclean re sexy
