@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:15:07 by smayrand          #+#    #+#             */
-/*   Updated: 2022/05/30 13:12:42 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/06/10 06:42:15 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*ft_nextl(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	tmp = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	tmp = ft_calloc((ft_strleng(buffer) - i + 1), sizeof(char));
 	i++;
 	ii = 0;
 	while (buffer[i])

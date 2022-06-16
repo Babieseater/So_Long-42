@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:20:11 by smayrand          #+#    #+#             */
-/*   Updated: 2022/05/30 11:59:41 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/06/10 06:41:58 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_strchr(const char *hay, int needle)
 	int	len;
 
 	i = 0;
-	len = ft_strlen(hay);
+	len = ft_strleng(hay);
 	while (i < len + 1)
 	{
 		if (hay[i] == (char)needle)
@@ -86,7 +86,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return (str);
 }
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strleng(const char *str)
 {
 	size_t	i;
 

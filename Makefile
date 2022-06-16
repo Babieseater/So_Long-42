@@ -6,7 +6,7 @@
 #    By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 14:38:45 by smayrand          #+#    #+#              #
-#    Updated: 2022/06/08 05:35:02 by smayrand         ###   ########.fr        #
+#    Updated: 2022/06/15 15:16:55 by smayrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,15 @@ NONE = '\033[0m'
 NAME = so_long
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+/* CFLAGS = -Wall -Werror -Wextra
 MLXFLAGS =  -lmlx -framework OpenGL -framework AppKit
 AR = ar -rcs
 
 RM = rm -f
 
 SRCS = so_long.c\
+./lib/key_input.c\
+./lib/ft_exit.c\
 
 LIBX_A = ./mlx/libmlx.a
 PRINTF_A = ./printf/libftprintf.a
@@ -50,7 +52,7 @@ mlxclean:
 	@echo $(GREEN) "MINILIBX CLEANED" $(NONE)
 	@(cd ..)
 
-all: mlx aprintf $(NAME)
+all: aprintf $(NAME)
 	@echo $(GREEN) "FULLY COMPILED" $(NONE)
 
 $(NAME):	$(OBJS)
@@ -59,7 +61,7 @@ $(NAME):	$(OBJS)
 clean:
 	$(RM) $(OBJS)
 
-fclean: clean mlxclean printfclean
+fclean: clean printfclean
 	$(RM) $(NAME)
 	@echo $(GREEN) "FULLY CLEANED" $(NONE)
 

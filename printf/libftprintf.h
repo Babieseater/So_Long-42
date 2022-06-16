@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:47:24 by smayrand          #+#    #+#             */
-/*   Updated: 2022/04/29 13:50:05 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/06/10 06:41:39 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include "../solib.h"
 
 typedef struct s_print
 {
