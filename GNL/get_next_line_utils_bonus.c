@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:20:11 by smayrand          #+#    #+#             */
-/*   Updated: 2022/06/10 06:41:58 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/06/21 12:34:53 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	tmp = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
+	tmp = ft_calloc(ft_strleng(s1) + ft_strleng(s2) + 1, sizeof(char));
 	if (!tmp)
 		return (NULL);
 	i = 0;

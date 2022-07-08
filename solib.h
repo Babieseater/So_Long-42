@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Solib.h                                            :+:      :+:    :+:   */
+/*   solib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:28 by smayrand          #+#    #+#             */
-/*   Updated: 2022/06/15 15:14:22 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/08 16:26:29 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,45 @@
 # define SOLIB_H
 
 # include "./mlx/mlx.h"
-# include "./GNL/get_next_line_bonus.h"
+# include "./gnl/get_next_line_bonus.h"
 # include "./printf/libftprintf.h"
 
 # define IMG_SIZE 64
 
-typedef struct s_main {
-	void	*mlx;
-	void	*win;
-}			t_main;
+typedef enum e_tiles {
+	GRASS = '0',
+	BUSH = '1',
+	CHEST = 'C',
+	PLAYER = 'P',
+	ENEMY = 'Z',
+	EXIT = 'E'
+}			t_tiles;
 
-typedef struct s_data {
-	void	*img;
-	char	*address;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_data;
+
+
+typedef struct s_main {
+	void		*mlx;
+	void		*mlx_win;
+	int			x_win;
+	int			y_win;
+	int			tile_s;
+	char		**map;
+	int			x_pos;
+	int			y_pos;
+	int			items;
+	int			end_n;
+	int			start_n;
+	int			movecount;
+	void		*player_d;
+	void		*player_u;
+	void		*player_l;
+	void		*player_r;
+	void		*grass;
+	void		*bush;
+	void		*item;
+	void		*end;
+	char		**tmp;
+}				t_main;
 
 enum {
 	ON_KEYPRESS = 2,
@@ -38,15 +60,22 @@ enum {
 };
 
 enum {
-	KEY_W = 13,
+	KEY_W = 13, 
 	KEY_A = 0,
 	KEY_S = 1,
 	KEY_D = 2,
-	KEY_ESC = 53,
-	
+	KEY_ESC = 53,	
 };
 
-int	ft_exit(t_main *game);
-int	key_hook(int keycode, t_main *input);
+void	ft_xpm_load(t_main *asset);
+void	ft_img_to_window(t_main	*asset, int x, int y);
+void	ft_map_init(t_main *asset);
+int		key_hook(int keycode, t_main *input);
+int		ft_exit(t_main *game);
+void	map_len(t_main *game, char *file);
+void	*ft_calloc(size_t count, size_t size);
+void	ft_xpm_load(t_main *asset);
+void	ft_img_to_window(t_main	*asset, int x, int y);
+void	ft_map_init(t_main *asset);
 
 #endif

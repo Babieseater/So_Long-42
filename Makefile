@@ -6,7 +6,7 @@
 #    By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 14:38:45 by smayrand          #+#    #+#              #
-#    Updated: 2022/06/15 15:16:55 by smayrand         ###   ########.fr        #
+#    Updated: 2022/07/08 12:37:26 by smayrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,16 @@ AR = ar -rcs
 RM = rm -f
 
 SRCS = so_long.c\
-./lib/key_input.c\
-./lib/ft_exit.c\
+./data/key_input.c\
+./data/exit.c\
+./data/game_init.c\
+./data/map_read.c\
+./gnl/get_next_line_bonus.c\
+./gnl/get_next_line_utils_bonus.c
 
 LIBX_A = ./mlx/libmlx.a
 PRINTF_A = ./printf/libftprintf.a
+#GNL_A = ./gnl/get_next_line_bonus.a
 OBJS = $(SRCS:.c=.o)
 
 
@@ -56,7 +61,7 @@ all: aprintf $(NAME)
 	@echo $(GREEN) "FULLY COMPILED" $(NONE)
 
 $(NAME):	$(OBJS)
-	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) $(LIBX_A) $(PRINTF_A) -o $(NAME)
+	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) $(LIBX_A) $(PRINTF_A) $(GNL_A) -o $(NAME)
 	
 clean:
 	$(RM) $(OBJS)

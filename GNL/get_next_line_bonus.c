@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:15:07 by smayrand          #+#    #+#             */
-/*   Updated: 2022/06/10 06:42:15 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/06/21 12:38:47 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_bertin(char *thanks, char *tip)
 	return (temp);
 }
 
-char	*ft_read(int fd, char *file)
+char	*ft_readf(int fd, char *file)
 {
 	char	*buffer;
 	int		nbread;
@@ -102,7 +102,7 @@ char	*get_next_line(int fd)
 
 	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buffer[fd] = ft_read(fd, buffer[fd]);
+	buffer[fd] = ft_readf(fd, buffer[fd]);
 	if (!buffer[fd])
 		return (NULL);
 	line = ft_rline(buffer[fd]);
