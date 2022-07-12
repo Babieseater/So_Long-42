@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:49:44 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/08 16:36:37 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/12 15:23:58 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,34 @@ void	ft_xpm_load(t_main *asset)
 			"./tex/map/portal.xpm", &asset->tile_s, &asset->tile_s);
 	asset->item = mlx_xpm_file_to_image(asset->mlx,
 			"./tex/objects/chest1.xpm", &asset->tile_s, &asset->tile_s);
+	asset->item2 = mlx_xpm_file_to_image(asset->mlx,
+			"./tex/objects/chest2.xpm", &asset->tile_s, &asset->tile_s);
 }
 
 void	ft_img_to_window(t_main	*asset, int x, int y)
 {
-	if (asset->map[x][y] == '1')
-		mlx_put_image_to_window(asset->mlx, asset->mlx_win, asset->bush,
-			asset->tile_s * x, asset->tile_s * y);
-	else if (asset->map[x][y] == 'C')
+	if (asset->map[y][x] == 'C')
+	{
 		mlx_put_image_to_window(asset->mlx, asset->mlx_win, asset->item,
 			asset->tile_s * x, asset->tile_s * y);
-	else if (asset->map[x][y] == 'E')
+		asset->items++;
+	}
+	else if (asset->map[y][x] == 'E')
 		mlx_put_image_to_window(asset->mlx, asset->mlx_win, asset->end,
 			asset->tile_s * x, asset->tile_s * y);
-	else if (asset->map[x][y] == '0')
+	else if (asset->map[y][x] == '0')
 		mlx_put_image_to_window(asset->mlx, asset->mlx_win, asset->grass,
 			asset->tile_s * x, asset->tile_s * y);
-	else
+	else if (asset->map[y][x] == 'P')
 	{
 		mlx_put_image_to_window(asset->mlx, asset->mlx_win, asset->player_d,
 			asset->tile_s * x, asset->tile_s * y);
 		asset->x_pos = x;
 		asset->y_pos = y;
 	}
+	else
+		mlx_put_image_to_window(asset->mlx, asset->mlx_win, asset->bush,
+			asset->tile_s * x, asset->tile_s * y);
 }
 
 void	ft_map_init(t_main *asset)
@@ -63,7 +68,7 @@ void	ft_map_init(t_main *asset)
 	int	y;
 
 	y = 0;
-	while (asset->map[y][x])
+	while (asset->map[y])
 	{
 		x = 0;
 		while (asset->map[y][x])

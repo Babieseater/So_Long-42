@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:28 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/08 16:26:29 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/12 15:30:41 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_main {
 	void		*grass;
 	void		*bush;
 	void		*item;
+	void		*item2;
 	void		*end;
 	char		**tmp;
 }				t_main;
@@ -67,6 +68,7 @@ enum {
 	KEY_ESC = 53,	
 };
 
+void	ft_items(t_main *input);
 void	ft_xpm_load(t_main *asset);
 void	ft_img_to_window(t_main	*asset, int x, int y);
 void	ft_map_init(t_main *asset);

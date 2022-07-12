@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:43 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/08 16:20:45 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:20:12 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	map_len(t_main *game, char *file)
 	int	fd;
 	int	i;
 
-	printf("here m8%s\n", file );
 	game->map = ft_calloc(sizeof(char), 4096);
 	if (!game->map)
 	{

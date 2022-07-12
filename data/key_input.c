@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 06:19:09 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/08 16:35:05 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/12 15:29:54 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,25 @@
 
 void	ft_down(t_main *input)
 {
-	if (input->map[input->y_pos][(input->x_pos) + 1] == 'E')
-	{
-		if (input->items == 0)
-			ft_exit(input);
-	}
+	if (input->map[(input->y_pos) + 1][input->x_pos] == 'E')
+		ft_items(input);
 	else if (ft_strchr("CP0",
-			input->map[input->y_pos][(input->x_pos) + 1]) != 0)
+			input->map[(input->y_pos) + 1][input->x_pos]) != 0)
 	{
-		if (input->map[input->y_pos][(input->x_pos) + 1] == 'C')
+		if (input->map[(input->y_pos) + 1][input->x_pos] == 'C')
+		{
 			input->items -= 1;
+			input->map[(input->y_pos) + 1][input->x_pos] = '1';
+			mlx_put_image_to_window(input->mlx, input->mlx_win,
+				input->item2, input->x_pos * 64, (input->y_pos + 1) * 64);
+		}
 		else
 		{
 			input->map[input->y_pos][input->x_pos] = '0';
 			mlx_put_image_to_window(input->mlx, input->mlx_win,
-				input->grass, input->y_pos * 64, input->x_pos++ *64);
+				input->grass, input->x_pos * 64, input->y_pos++ *64);
 			mlx_put_image_to_window(input->mlx, input->mlx_win,
-				input->player_d, input->y_pos * 64, input->x_pos * 64);
+				input->player_d, input->x_pos * 64, input->y_pos * 64);
 			input->movecount++;
 			ft_printf("Moves : %d\n", input->movecount);
 		}
@@ -41,23 +43,25 @@ void	ft_down(t_main *input)
 
 void	ft_up(t_main *input)
 {
-	if (input->map[input->y_pos][(input->x_pos) - 1] == 'E')
-	{
-		if (input->items == 0)
-			ft_exit(input);
-	}
+	if (input->map[(input->y_pos) - 1][input->x_pos] == 'E')
+		ft_items(input);
 	else if (ft_strchr("CP0",
-			input->map[input->y_pos][(input->x_pos) - 1]) != 0)
+			input->map[(input->y_pos) - 1][input->x_pos]) != 0)
 	{
-		if (input->map[input->y_pos][(input->x_pos) - 1] == 'C')
+		if (input->map[(input->y_pos) - 1][input->x_pos] == 'C')
+		{
 			input->items -= 1;
+			input->map[(input->y_pos) - 1][input->x_pos] = '1';
+			mlx_put_image_to_window(input->mlx, input->mlx_win,
+				input->item2, input->x_pos * 64, (input->y_pos - 1) * 64);
+		}
 		else
 		{
 			input->map[input->y_pos][input->x_pos] = '0';
 			mlx_put_image_to_window(input->mlx, input->mlx_win,
-				input->grass, input->y_pos * 64, input->x_pos-- *64);
+				input->grass, input->x_pos * 64, input->y_pos-- *64);
 			mlx_put_image_to_window(input->mlx, input->mlx_win,
-				input->player_d, input->y_pos * 64, input->x_pos * 64);
+				input->player_u, input->x_pos * 64, input->y_pos * 64);
 			input->movecount++;
 			ft_printf("Moves : %d\n", input->movecount);
 		}
@@ -66,23 +70,25 @@ void	ft_up(t_main *input)
 
 void	ft_left(t_main *input)
 {
-	if (input->map[(input->y_pos) - 1][input->x_pos] == 'E')
-	{
-		if (input->items == 0)
-			ft_exit(input);
-	}
+	if (input->map[input->y_pos][(input->x_pos) - 1] == 'E')
+		ft_items(input);
 	else if (ft_strchr("CP0",
-			input->map[(input->y_pos) - 1][input->x_pos]) != 0)
+			input->map[input->y_pos][(input->x_pos) - 1]) != 0)
 	{
-		if (input->map[(input->y_pos) - 1][input->x_pos] == 'C')
+		if (input->map[input->y_pos][(input->x_pos) - 1] == 'C')
+		{
 			input->items -= 1;
+			input->map[input->y_pos][(input->x_pos) - 1] = '1';
+			mlx_put_image_to_window(input->mlx, input->mlx_win,
+				input->item2, (input->x_pos - 1) * 64, input->y_pos * 64);
+		}
 		else
 		{
 			input->map[input->y_pos][input->x_pos] = '0';
 			mlx_put_image_to_window(input->mlx, input->mlx_win,
-				input->grass, input->y_pos-- * 64, input->x_pos * 64);
+				input->grass, input->x_pos-- *64, input->y_pos * 64);
 			mlx_put_image_to_window(input->mlx, input->mlx_win,
-				input->player_d, input->y_pos * 64, input->x_pos * 64);
+				input->player_l, input->x_pos * 64, input->y_pos * 64);
 			input->movecount++;
 			ft_printf("Moves : %d\n", input->movecount);
 		}
@@ -91,23 +97,25 @@ void	ft_left(t_main *input)
 
 void	ft_right(t_main *input)
 {
-	if (input->map[(input->y_pos) + 1][input->x_pos] == 'E')
-	{
-		if (input->items == 0)
-			ft_exit(input);
-	}
+	if (input->map[input->y_pos][(input->x_pos) + 1] == 'E')
+		ft_items(input);
 	else if (ft_strchr("CP0",
-			input->map[(input->y_pos) + 1][input->x_pos]) != 0)
+			input->map[input->y_pos][(input->x_pos) + 1]) != 0)
 	{
-		if (input->map[(input->y_pos) + 1][input->x_pos] == 'C')
+		if (input->map[input->y_pos][(input->x_pos) + 1] == 'C')
+		{
 			input->items -= 1;
+			input->map[input->y_pos][(input->x_pos) + 1] = '1';
+			mlx_put_image_to_window(input->mlx, input->mlx_win,
+				input->item2, (input->x_pos + 1) * 64, input->y_pos * 64);
+		}
 		else
 		{
 			input->map[input->y_pos][input->x_pos] = '0';
 			mlx_put_image_to_window(input->mlx, input->mlx_win,
-				input->grass, input->y_pos++ * 64, input->x_pos * 64);
+				input->grass, input->x_pos++ *64, input->y_pos * 64);
 			mlx_put_image_to_window(input->mlx, input->mlx_win,
-				input->player_d, input->y_pos * 64, input->x_pos * 64);
+				input->player_r, input->x_pos * 64, input->y_pos * 64);
 			input->movecount++;
 			ft_printf("Moves : %d\n", input->movecount);
 		}
