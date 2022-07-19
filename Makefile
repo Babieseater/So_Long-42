@@ -6,7 +6,7 @@
 #    By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 14:38:45 by smayrand          #+#    #+#              #
-#    Updated: 2022/07/08 12:37:26 by smayrand         ###   ########.fr        #
+#    Updated: 2022/07/13 13:15:13 by smayrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,12 @@ PRINTF_A = ./printf/libftprintf.a
 OBJS = $(SRCS:.c=.o)
 
 
+all: aprintf $(NAME)
+	@echo $(GREEN) "FULLY COMPILED" $(NONE)
+
+play: aprintf $(NAME)
+	@echo $(GREEN) "FULLY COMPILED" $(NONE)
+	@(./so_long maps/level1.ber)
 	
 aprintf:
 	@(cd ./printf && make all)
@@ -57,8 +63,6 @@ mlxclean:
 	@echo $(GREEN) "MINILIBX CLEANED" $(NONE)
 	@(cd ..)
 
-all: aprintf $(NAME)
-	@echo $(GREEN) "FULLY COMPILED" $(NONE)
 
 $(NAME):	$(OBJS)
 	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) $(LIBX_A) $(PRINTF_A) $(GNL_A) -o $(NAME)

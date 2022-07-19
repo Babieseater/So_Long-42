@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:28 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/12 15:30:41 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/19 12:51:45 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ typedef enum e_tiles {
 	ENEMY = 'Z',
 	EXIT = 'E'
 }			t_tiles;
-
-
 
 typedef struct s_main {
 	void		*mlx;
@@ -61,7 +59,7 @@ enum {
 };
 
 enum {
-	KEY_W = 13, 
+	KEY_W = 13,
 	KEY_A = 0,
 	KEY_S = 1,
 	KEY_D = 2,
@@ -69,12 +67,15 @@ enum {
 };
 
 void	ft_items(t_main *input);
+void	validate_ext(t_main *game, char *file);
+void	validate_borders(t_main *game, char *file);
 void	ft_xpm_load(t_main *asset);
 void	ft_img_to_window(t_main	*asset, int x, int y);
 void	ft_map_init(t_main *asset);
 int		key_hook(int keycode, t_main *input);
 int		ft_exit(t_main *game);
-void	map_len(t_main *game, char *file);
+int		ft_victory(t_main *game);
+void	map_read(t_main *game, char *file);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_xpm_load(t_main *asset);
 void	ft_img_to_window(t_main	*asset, int x, int y);

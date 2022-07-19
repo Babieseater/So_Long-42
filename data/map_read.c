@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:43 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/12 13:20:12 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:31:49 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../gnl/get_next_line_bonus.h"
 #include <stdio.h>
 
-void	map_len(t_main *game, char *file)
+void	map_read(t_main *game, char *file)
 {
 	int	fd;
 	int	i;
@@ -31,7 +31,6 @@ void	map_len(t_main *game, char *file)
 	while (i >= 0)
 	{
 		game->map[i] = get_next_line(fd);
-		printf("%s", game->map[i]);
 		if (!game->map[i])
 			break ;
 		i++;
@@ -39,3 +38,59 @@ void	map_len(t_main *game, char *file)
 	game->y_win = i;
 	game->x_win = ft_strlen(game->map[0]) - 1;
 }
+
+void	validate_borders(t_main *game, char *file)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (game->map[y])
+	{
+		x = 0;
+		while (game->map[y][x])
+		{
+			if ((game->map[y][x + 1] == '\0' && game->map[y][x] == '1')
+				|| (game->map[y][x + 1] == '\n' && game->map[y][x] == '1'))
+				break ;
+			else if (y == 0 || x == 0 || x == (game->x_win / 64 - 2)
+				|| y == (game->y_win / 64 - 1))
+			{
+				if (game->map[y][x] != '1')
+				{
+					ft_printf("%s", "Error walls");
+				}
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+void	validate_ext(t_main *game, char *file)
+{
+	char	*ext;
+	int		i;
+	int		j;
+
+	ext = ".ber";
+	j = 0;
+	i = ft_strlen(file) - 4;
+	while (ext[j] != '\0')
+	{
+		if (file[i] != ext[j])
+		{
+			ft_printf("Error\n%s\n", "WRONG MAP EXTENSION");
+			ft_exit(game);
+			break ;
+		}
+		i++;
+		j++;
+	}
+}
+
+/*void	validate_CEP(t_main *game, char *file)
+{
+	 
+}
+*/
