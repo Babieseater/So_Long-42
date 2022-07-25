@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:43 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/19 16:31:49 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/25 13:05:42 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,58 +39,80 @@ void	map_read(t_main *game, char *file)
 	game->x_win = ft_strlen(game->map[0]) - 1;
 }
 
-void	validate_borders(t_main *game, char *file)
+void	validate_len(t_main *game)
 {
-	int	x;
-	int	y;
+	t_var	var;
 
-	y = 0;
-	while (game->map[y])
+	var.y = 0;
+	while (game->map[var.y + 1])
 	{
-		x = 0;
-		while (game->map[y][x])
+		var.a = ft_strlen(game->map[var.y]);
+		var.b = ft_strlen(game->map[var.y + 1]);
+		if (var.b != var.a)
 		{
-			if ((game->map[y][x + 1] == '\0' && game->map[y][x] == '1')
-				|| (game->map[y][x + 1] == '\n' && game->map[y][x] == '1'))
-				break ;
-			else if (y == 0 || x == 0 || x == (game->x_win / 64 - 2)
-				|| y == (game->y_win / 64 - 1))
+			if (game->map[var.y + 2] == 0)
+				var.b = ft_strlen(game->map[var.y + 1]) + 1;
+			else
 			{
-				if (game->map[y][x] != '1')
+				break ;
+			}
+		}
+		var.y++;
+	}
+	if (var.b != var.a)
+		ft_printf("%s", "Error\nMap not rectangular");
+	else
+		validate_borders(game);
+}
+
+void	validate_borders(t_main *game)
+{
+	t_var	v;
+
+	v.y = 0;
+	while (game->map[v.y] != game->map[game->y_win + 1])
+	{
+		v.x = 0;
+		while (game->map[v.y][v.x])
+		{
+			if (game->map[v.y][v.x] == '\0'
+				|| game->map[v.y][v.x] == '\n')
+			{
+				break ;
+			}	
+			else if (v.y == 0 || v.x == 0 || v.x == game->x_win - 1
+				|| v.y == game->y_win - 1)
+			{
+				if (game->map[v.y][v.x] != '1')
 				{
 					ft_printf("%s", "Error walls");
 				}
 			}
-			x++;
+			v.x++;
+			printf("X:%d\n", v.x);
 		}
-		y++;
+		v.y++;
+		printf("Y:%d\n", v.y);
 	}
 }
 
 void	validate_ext(t_main *game, char *file)
 {
 	char	*ext;
-	int		i;
-	int		j;
+	t_var	v;
 
 	ext = ".ber";
-	j = 0;
-	i = ft_strlen(file) - 4;
-	while (ext[j] != '\0')
+	v.j = 0;
+	v.i = ft_strlen(file) - 4;
+	while (ext[v.j] != '\0')
 	{
-		if (file[i] != ext[j])
+		if (file[v.i] != ext[v.j])
 		{
 			ft_printf("Error\n%s\n", "WRONG MAP EXTENSION");
 			ft_exit(game);
 			break ;
 		}
-		i++;
-		j++;
+		v.i++;
+		v.j++;
 	}
 }
-
-/*void	validate_CEP(t_main *game, char *file)
-{
-	 
-}
-*/

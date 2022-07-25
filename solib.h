@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:28 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/19 12:51:45 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:14:16 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,17 @@ typedef enum e_tiles {
 	ENEMY = 'Z',
 	EXIT = 'E'
 }			t_tiles;
+
+typedef struct s_var {
+	int	a;
+	int	b;
+	int	y;
+	int	x;
+	int	yy;
+	int	xx;
+	int	i;
+	int	j;
+}		t_var;
 
 typedef struct s_main {
 	void		*mlx;
@@ -68,7 +79,8 @@ enum {
 
 void	ft_items(t_main *input);
 void	validate_ext(t_main *game, char *file);
-void	validate_borders(t_main *game, char *file);
+void	validate_len(t_main *game);
+void	validate_borders(t_main *game);
 void	ft_xpm_load(t_main *asset);
 void	ft_img_to_window(t_main	*asset, int x, int y);
 void	ft_map_init(t_main *asset);
