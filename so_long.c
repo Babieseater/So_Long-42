@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:44 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/26 16:42:01 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:03:34 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_printf("%s\n","Error\nWrong arguments number");
+		ft_printf("%s\n", "Error\nWrong arguments number");
 		return (0);
 	}
 	map_read(&main, argv[1]);
