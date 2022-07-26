@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:28 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/25 13:38:43 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/26 16:49:18 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	ft_img_to_window(t_main	*asset, int x, int y);
 void	ft_map_init(t_main *asset);
 int		key_hook(int keycode, t_main *input);
 int		ft_exit(t_main *game);
+int		ft_toolarge(t_main *game);
 int		ft_victory(t_main *game);
 void	map_read(t_main *game, char *file);
 void	*ft_calloc(size_t count, size_t size);

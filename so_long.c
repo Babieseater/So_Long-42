@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:44 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/25 14:39:32 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/26 16:42:01 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	main(int argc, char **argv)
 {
 	t_main	main;
 
+	if (argc != 2)
+	{
+		ft_printf("%s\n","Error\nWrong arguments number");
+		return (0);
+	}
 	map_read(&main, argv[1]);
 	main.mlx = mlx_init();
 	main.mlx_win = mlx_new_window(main.mlx,
@@ -25,6 +30,7 @@ int	main(int argc, char **argv)
 	validate_ext(&main, argv[1]);
 	validate_len(&main);
 	validate_content(&main);
+	validate_borders(&main);
 	ft_xpm_load(&main);
 	ft_map_init(&main);
 	mlx_hook(main.mlx_win, 2, 1L << 0, key_hook, &main);

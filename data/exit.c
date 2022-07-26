@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:08:00 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/26 12:46:41 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/26 16:51:51 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,23 @@
 #include "../mlx/mlx.h"
 #include <stdio.h>
 
+void	free_ptr(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
 int	ft_victory(t_main *input)
 {
 	mlx_destroy_window(input->mlx, input->mlx_win);
-	free(input->map);
+	free_ptr(input->map);
 	ft_printf("%s\n", "YOU MADE IT THROUGH THE BUSHES OF LOVE!");
 	exit(0);
 }
@@ -25,8 +38,15 @@ int	ft_victory(t_main *input)
 int	ft_exit(t_main *input)
 {
 	mlx_destroy_window(input->mlx, input->mlx_win);
-	free(input->map);
-	ft_printf("%s\n", "GAME CLOSED");
+	free_ptr(input->map);
+	exit(0);
+}
+
+int	ft_toolarge(t_main *input)
+{
+	mlx_destroy_window(input->mlx, input->mlx_win);
+	free_ptr(input->map);
+	ft_printf("%s", "Error\nMap file too large\n");
 	exit(0);
 }
 

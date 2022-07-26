@@ -6,7 +6,7 @@
 #    By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 14:38:45 by smayrand          #+#    #+#              #
-#    Updated: 2022/07/13 13:15:13 by smayrand         ###   ########.fr        #
+#    Updated: 2022/07/26 13:53:39 by smayrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ all: aprintf $(NAME)
 
 play: aprintf $(NAME)
 	@echo $(GREEN) "FULLY COMPILED" $(NONE)
-	@(./so_long maps/level1.ber)
+	@(./so_long maps/inv_map.ber)
 	
 aprintf:
 	@(cd ./printf && make all)

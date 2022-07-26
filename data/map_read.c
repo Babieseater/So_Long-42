@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:43 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/26 12:41:22 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/26 16:54:11 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,27 @@ void	validate_len(t_main *game)
 	t_var	var;
 
 	var.y = 0;
-	while (game->map[var.y + 1])
+	var.a = ft_strlen(game->map[var.y]);
+	while (game->map[var.y])
 	{
-		var.a = ft_strlen(game->map[var.y]);
-		var.b = ft_strlen(game->map[var.y + 1]);
+		var.b = ft_strlen(game->map[var.y]);
 		if (var.b != var.a)
 		{
-			if (game->map[var.y + 2] == 0)
-				var.b = ft_strlen(game->map[var.y + 1]) + 1;
+			if (game->map[var.y + 1] == 0)
+				var.b = ft_strlen(game->map[var.y]);
 			else
-			{
 				break ;
-			}
 		}
 		var.y++;
 	}
 	if (var.b != var.a)
 	{
-		ft_printf("%s", "Error\nMap not rectangular\n");
+		ft_printf("%s", "Error\nMap not rectangular ");
+		ft_printf("%s", "or no newline at end of file\n");
 		ft_exit(game);
 	}
-	else
-		validate_borders(game);
+	else if (var.a > 40 || var.y > 20)
+		ft_toolarge(game);
 }
 
 void	validate_borders(t_main *game)
@@ -80,9 +79,7 @@ void	validate_borders(t_main *game)
 		{
 			if (game->map[v.y][v.x] == '\0'
 				|| game->map[v.y][v.x] == '\n')
-			{
 				break ;
-			}	
 			else if (v.y == 0 || v.x == 0 || v.x == game->x_win - 1
 				|| v.y == game->y_win - 1)
 			{
