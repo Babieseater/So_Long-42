@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:28 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/21 13:14:16 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/25 13:38:43 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_main {
 	int			x_pos;
 	int			y_pos;
 	int			items;
+	int			items_n;
 	int			end_n;
 	int			start_n;
 	int			movecount;
@@ -81,6 +82,7 @@ void	ft_items(t_main *input);
 void	validate_ext(t_main *game, char *file);
 void	validate_len(t_main *game);
 void	validate_borders(t_main *game);
+void	validate_content(t_main *game);
 void	ft_xpm_load(t_main *asset);
 void	ft_img_to_window(t_main	*asset, int x, int y);
 void	ft_map_init(t_main *asset);

@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:43 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/25 13:05:42 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/26 12:41:22 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	map_read(t_main *game, char *file)
 	if (!game->map)
 	{
 		free(game->map);
-		exit(ft_printf("Error, can't allocate memory"));
+		exit(ft_printf("Error, can't allocate memory\n"));
 	}
 	fd = open(file, O_RDONLY, 0644);
 	i = 0;
@@ -60,7 +60,10 @@ void	validate_len(t_main *game)
 		var.y++;
 	}
 	if (var.b != var.a)
-		ft_printf("%s", "Error\nMap not rectangular");
+	{
+		ft_printf("%s", "Error\nMap not rectangular\n");
+		ft_exit(game);
+	}
 	else
 		validate_borders(game);
 }
@@ -85,14 +88,40 @@ void	validate_borders(t_main *game)
 			{
 				if (game->map[v.y][v.x] != '1')
 				{
-					ft_printf("%s", "Error walls");
+					ft_printf("%s", "Error\nWalls not closed\n");
+					ft_exit(game);
 				}
 			}
 			v.x++;
-			printf("X:%d\n", v.x);
 		}
 		v.y++;
-		printf("Y:%d\n", v.y);
+	}
+}
+
+void	validate_content(t_main *game)
+{
+	t_var	v;
+
+	v.yy = 0;
+	while (game->map[v.yy])
+	{
+		v.xx = 0;
+		while (game->map[v.yy][v.xx])
+		{
+			if (game->map[v.yy][v.xx] == 'C')
+				game->items_n += 1;
+			else if (game->map[v.yy][v.xx] == 'E')
+				game->end_n += 1;
+			else if (game->map[v.yy][v.xx] == 'P')
+				game->start_n += 1;
+			v.xx++;
+		}
+		v.yy++;
+	}
+	if (game->items_n <= 0 || game->end_n <= 0 || game->start_n != 1)
+	{
+		ft_printf("%s", "Error\nNo collectibles, start position or exit\n");
+		ft_exit(game);
 	}
 }
 
@@ -108,7 +137,7 @@ void	validate_ext(t_main *game, char *file)
 	{
 		if (file[v.i] != ext[v.j])
 		{
-			ft_printf("Error\n%s\n", "WRONG MAP EXTENSION");
+			ft_printf("%s", "Error\nWrong map extention\n");
 			ft_exit(game);
 			break ;
 		}

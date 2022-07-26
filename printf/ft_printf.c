@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:45:36 by smayrand          #+#    #+#             */
-/*   Updated: 2022/04/29 14:21:44 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/25 13:52:19 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ const char	*ft_read(t_print *src, const char *fmt)
 	if (next)
 		src->width = next - fmt;
 	else
-		src->width = ft_strlen(fmt);
+		src->width = ft_strlen((char *)fmt);
 	write(1, fmt, src->width);
 	src->len += src->width;
 	while (*fmt && *fmt != '%')

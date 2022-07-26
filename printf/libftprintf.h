@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:47:24 by smayrand          #+#    #+#             */
-/*   Updated: 2022/06/10 06:41:39 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/25 13:51:04 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		ft_putchar(char c);
 void		ft_putnbr_u(unsigned int nb);
 void		ft_putnbr(int nb);
 void		ft_putstr(char *str);
-int			ft_strlen(const char *str);
+int			ft_strlen(char *str);
 const char	*ft_read(t_print *src, const char *fmt);
 const char	*ft_mod(va_list arg, const char *fmt, t_print *src);
 

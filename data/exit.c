@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:08:00 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/15 13:56:10 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/26 12:46:41 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 int	ft_victory(t_main *input)
 {
 	mlx_destroy_window(input->mlx, input->mlx_win);
+	free(input->map);
 	ft_printf("%s\n", "YOU MADE IT THROUGH THE BUSHES OF LOVE!");
 	exit(0);
 }
@@ -24,6 +25,7 @@ int	ft_victory(t_main *input)
 int	ft_exit(t_main *input)
 {
 	mlx_destroy_window(input->mlx, input->mlx_win);
+	free(input->map);
 	ft_printf("%s\n", "GAME CLOSED");
 	exit(0);
 }

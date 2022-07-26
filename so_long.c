@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:44 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/20 15:07:29 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/25 14:39:32 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 			main.x_win * 64, main.y_win * 64, "Bushes of Love");
 	validate_ext(&main, argv[1]);
 	validate_len(&main);
+	validate_content(&main);
 	ft_xpm_load(&main);
 	ft_map_init(&main);
 	mlx_hook(main.mlx_win, 2, 1L << 0, key_hook, &main);
