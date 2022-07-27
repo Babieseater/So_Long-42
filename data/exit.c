@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:08:00 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/26 16:51:51 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/26 21:38:56 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int	ft_victory(t_main *input)
 	exit(0);
 }
 
-int	ft_exit(t_main *input)
+int	ft_exit(t_main *input, char *msg)
 {
+	ft_printf("%s", msg);
 	mlx_destroy_window(input->mlx, input->mlx_win);
 	free_ptr(input->map);
 	exit(0);

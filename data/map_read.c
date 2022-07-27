@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:43 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/26 16:54:11 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/26 22:17:00 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ void	map_read(t_main *game, char *file)
 	if (!game->map)
 	{
 		free(game->map);
-		exit(ft_printf("Error, can't allocate memory\n"));
+		exit(ft_printf("Error\nCan't allocate memory\n"));
 	}
 	fd = open(file, O_RDONLY, 0644);
+	if (fd < 0)
+		exit(ft_printf("Error\nFile not existing\n"));
 	i = 0;
 	while (i >= 0)
 	{
@@ -39,34 +41,6 @@ void	map_read(t_main *game, char *file)
 	game->x_win = ft_strlen(game->map[0]) - 1;
 }
 
-void	validate_len(t_main *game)
-{
-	t_var	var;
-
-	var.y = 0;
-	var.a = ft_strlen(game->map[var.y]);
-	while (game->map[var.y])
-	{
-		var.b = ft_strlen(game->map[var.y]);
-		if (var.b != var.a)
-		{
-			if (game->map[var.y + 1] == 0)
-				var.b = ft_strlen(game->map[var.y]);
-			else
-				break ;
-		}
-		var.y++;
-	}
-	if (var.b != var.a)
-	{
-		ft_printf("%s", "Error\nMap not rectangular ");
-		ft_printf("%s", "or no newline at end of file\n");
-		ft_exit(game);
-	}
-	else if (var.a > 40 || var.y > 20)
-		ft_toolarge(game);
-}
-
 void	validate_borders(t_main *game)
 {
 	t_var	v;
@@ -77,17 +51,13 @@ void	validate_borders(t_main *game)
 		v.x = 0;
 		while (game->map[v.y][v.x])
 		{
-			if (game->map[v.y][v.x] == '\0'
-				|| game->map[v.y][v.x] == '\n')
+			if (game->map[v.y][v.x] == '\n' || game->map[v.y][v.x] == '\0')
 				break ;
 			else if (v.y == 0 || v.x == 0 || v.x == game->x_win - 1
 				|| v.y == game->y_win - 1)
 			{
 				if (game->map[v.y][v.x] != '1')
-				{
-					ft_printf("%s", "Error\nWalls not closed\n");
-					ft_exit(game);
-				}
+					ft_exit(game, "Error\nWalls not closed\n");
 			}
 			v.x++;
 		}
@@ -99,8 +69,9 @@ void	validate_content(t_main *game)
 {
 	t_var	v;
 
-	v.yy = 0;
-	while (game->map[v.yy])
+	v.yy = -1;
+	game->tiles = 0;
+	while (game->map[++v.yy])
 	{
 		v.xx = 0;
 		while (game->map[v.yy][v.xx])
@@ -111,15 +82,16 @@ void	validate_content(t_main *game)
 				game->end_n += 1;
 			else if (game->map[v.yy][v.xx] == 'P')
 				game->start_n += 1;
+			game->tiles++;
 			v.xx++;
+			if (game->map[v.yy][v.xx + 1] == '\0'
+				|| game->map[v.yy][v.xx + 1] == '\n')
+				break ;
 		}
-		v.yy++;
 	}
-	if (game->items_n <= 0 || game->end_n <= 0 || game->start_n != 1)
-	{
-		ft_printf("%s", "Error\nNo collectibles, start position or exit\n");
-		ft_exit(game);
-	}
+	if (game->items_n <= 0 || game->end_n <= 0 || game->start_n != 1
+		|| v.yy * v.xx != game->tiles)
+		ft_exit(game, "Error\nMap integrity not valid\n");
 }
 
 void	validate_ext(t_main *game, char *file)
@@ -132,11 +104,10 @@ void	validate_ext(t_main *game, char *file)
 	v.i = ft_strlen(file) - 4;
 	while (ext[v.j] != '\0')
 	{
-		if (file[v.i] != ext[v.j])
+		if (file[v.i] != ext[v.j] || (v.i - 5) <= 0)
 		{
 			ft_printf("%s", "Error\nWrong map extention\n");
-			ft_exit(game);
-			break ;
+			exit (0);
 		}
 		v.i++;
 		v.j++;

@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 06:19:09 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/12 15:29:54 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/26 21:41:25 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	ft_right(t_main *input)
 int	key_hook(int keycode, t_main *input)
 {
 	if (keycode == KEY_ESC)
-		ft_exit(input);
+		ft_exit(input, "Game closed\n");
 	else if (keycode == KEY_W)
 		ft_up(input);
 	else if (keycode == KEY_A)
