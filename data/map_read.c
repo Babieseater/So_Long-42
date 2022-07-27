@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:43 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/26 22:17:00 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/27 02:17:15 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	validate_content(t_main *game)
 		ft_exit(game, "Error\nMap integrity not valid\n");
 }
 
-void	validate_ext(t_main *game, char *file)
+void	validate_ext(char *file)
 {
 	char	*ext;
 	t_var	v;

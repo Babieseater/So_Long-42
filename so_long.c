@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:44 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/26 22:10:19 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/27 02:17:35 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 		ft_printf("%s\n", "Error\nWrong arguments number");
 		return (0);
 	}
-	validate_ext(&main, argv[1]);
+	validate_ext(argv[1]);
 	map_read(&main, argv[1]);
 	main.mlx = mlx_init();
 	main.mlx_win = mlx_new_window(main.mlx,

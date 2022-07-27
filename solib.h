@@ -6,7 +6,7 @@
 /*   By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:46:28 by smayrand          #+#    #+#             */
-/*   Updated: 2022/07/26 22:10:14 by smayrand         ###   ########.fr       */
+/*   Updated: 2022/07/27 02:15:29 by smayrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ enum {
 };
 
 void	ft_items(t_main *input);
-void	validate_ext(t_main *game, char *file);
+void	validate_ext(char *file);
 void	validate_borders(t_main *game);
 void	validate_content(t_main *game);
 void	ft_xpm_load(t_main *asset);

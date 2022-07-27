@@ -6,7 +6,7 @@
 #    By: smayrand <smayrand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 14:38:45 by smayrand          #+#    #+#              #
-#    Updated: 2022/07/26 17:04:34 by smayrand         ###   ########.fr        #
+#    Updated: 2022/07/27 02:14:20 by smayrand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NONE = '\033[0m'
 NAME = so_long
 
 CC = gcc
-/* CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 MLXFLAGS =  -lmlx -framework OpenGL -framework AppKit
 AR = ar -rcs
 
@@ -32,7 +32,6 @@ SRCS = so_long.c\
 
 LIBX_A = ./mlx/libmlx.a
 PRINTF_A = ./printf/libftprintf.a
-#GNL_A = ./gnl/get_next_line_bonus.a
 OBJS = $(SRCS:.c=.o)
 
 
